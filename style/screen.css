@@ -1,10 +1,17 @@
+body {
+  text-align: center;
+}
 .wrapper {
   margin: 100px auto 20px;
-  width: 570px;
+  display: inline-block;
+  text-align: left;
 }
-select {width: 50px;}
+select {width: 100%;}
 #bar_bpm {
-  width: 50px;
+  padding-left: 0;
+  padding-right: 0;
+  text-indent: 5px;
+  width: 100%;
 }
 label {
   font-size: 12px;
