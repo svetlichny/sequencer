@@ -29,7 +29,7 @@ label {
   height: 20px;
   list-style: none;
   margin-left: 5px;
-  width: 45px;
+  width: 30px;
   vertical-align: top;
 }
 #sequencer li[data-value='1'] {

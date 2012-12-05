@@ -35,7 +35,7 @@ Machine.prototype = {
     for (var i = 0; i < machine.meter.beat; i++) {
       (function(i) {
         machine.barNotes[i] = window.setTimeout(function() {
-          machine.playNote(i);
+          //machine.playNote(i);
           machine.blink(i);
         },i*noteLength.call(machine, machine.meter.value));
       })(i);
@@ -145,14 +145,14 @@ Machine.prototype.buildGrid = function() {
 };
 Machine.prototype.blink = function(index) {
   var machine = this;
-  if (machine.bar[index]){
+  if (machine.bar[index]) {
+    machine.high.play();
     $(machine.grid[index]).attr("id", "on");
     var timeout = window.setTimeout(function() {
       $(machine.grid[index]).attr("id", "");
       window.clearTimeout(timeout);
     }, 100);
   }
-
 };
 
 Machine.prototype.createBar = function() {
