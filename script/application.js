@@ -111,3 +111,9 @@ Machine.prototype.sound = function(height){
   this[height] = this[height] || new Audio("audio/" + height + browserFormat());
   return this[height];
 };
+
+
+$(document).ready(function () {
+  var controls = document.getElementById("meter");
+  machine = new Machine(controls);
+;})

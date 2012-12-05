@@ -2,9 +2,13 @@
   margin: 100px auto 20px;
   width: 570px;
 }
-select {width: 80px;}
+select {width: 50px;}
 #bar_bpm {
   width: 50px;
+}
+label {
+  font-size: 12px;
+  white-space: nowrap;
 }
 #sequencer {
   margin: 20px 0;
