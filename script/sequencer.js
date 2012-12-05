@@ -58,9 +58,7 @@ Sequencer.prototype.blink = function(index) {
   }
 };
 function Sequencer (meterTrigger, gridWrapper){
-  var sequencer = this;
   this.meter = meterTrigger;
-  this.original = {};
   this.bar = [];
   this.grid = [];
   for (var i = 0; i < gridWrapper.length; i++) {

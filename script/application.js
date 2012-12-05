@@ -1,6 +1,8 @@
 Machine.prototype = {
   stopped: true,
   justStarted: true,
+  grid: [],
+  bar: [],
   start: function () {
     if (this.stopped == true) {
       this.stopped = false;
@@ -34,17 +36,23 @@ Machine.prototype = {
       (function(i) {
         machine.barNotes[i] = window.setTimeout(function() {
           machine.playNote(i);
+          machine.blink(i);
         },i*noteLength.call(machine, machine.meter.value));
       })(i);
     }
   }
 };
 
-function Machine (meter, sequencerView) {
+function Machine (meter, gridList) {
   this.getParameters(meter);
   this.sound('high');
   this.sound('med');
   this.sound('low');
+  for (var i = 0; i < gridList.length; i++) {
+    this.grid.push(gridList[i]);
+  };
+  this.buildGrid();
+  this.listenGrid(gridList);
   return this;
 };
 
@@ -71,33 +79,46 @@ Machine.prototype.getParameters = function (meter) {
   this.listenControls(meter);
 };
 Machine.prototype.listenControls = function (meter) {
-  var sequencer = this;
+  var machine = this;
   if ($("#bar_value").val().to_i() <= 4){
-    console.log('test');
     $("#bar_accent").attr("disabled", "disabled");
   }
   $(meter).find("select, input").each(function() {
     $(this).bind('keyup change input', function() {
       var optionName = $(this).attr("id").split("_")[1];
-      sequencer.meter.original[optionName] = $(this).val().to_i();
-      sequencer.adjustParameters();
+      machine.meter.original[optionName] = $(this).val().to_i();
+      machine.adjustParameters();
       if (optionName == 'value' && $(this).val().to_i() <= 4) {
         $("#bar_accent").attr("disabled", "disabled");
       } else if (optionName == 'value' && $(this).val().to_i() > 4) {
         $("#bar_accent").removeAttr("disabled");
+      }
+      if (optionName != 'bpm' && optionName != 'accent') {
+        machine.buildGrid();
       }
     });
   });
   $(meter).find('.btn').each(function() {
     var action = $(this).attr('id');
     $(this).click(function() {
-      sequencer[action].call(sequencer);
+      machine[action].call(machine);
       return false;
     });
   });
 };
+Machine.prototype.listenGrid = function(gridList) {
+  var selector = $(gridList[0].parentNode).find("li");
+  $(selector).live("click", function () {
+    if ($(this).attr('data-value') == 0) {
+      $(this).attr('data-value', 1);
+    } else {
+      $(this).attr('data-value', 0);
+    }
+    machine.createBar();
+  });
+};
 Machine.prototype.stopBar = function() {
-  for (var i = 0; i < this.barNotes.length; i++) 
+  for (var i = 0; i < this.barNotes.length; i++)
     window.clearTimeout(this.barNotes[i]);
 };
 Machine.prototype.playNote = function(index) {
@@ -111,9 +132,39 @@ Machine.prototype.sound = function(height){
   this[height] = this[height] || new Audio("audio/" + height + browserFormat());
   return this[height];
 };
+Machine.prototype.buildGrid = function() {
+  var gridParent = this.grid[0].parentNode;
+  $(gridParent).empty();
+  this.grid = [];
+  for (var i = 0; i < this.meter.beat; i++) {
+    var newNote = $('<li data-value="0"/>').appendTo($(gridParent))[0];
+    this.grid.push(newNote);
+    if (i == this.meter.beat - 1)
+      this.createBar();
+  };
+};
+Machine.prototype.blink = function(index) {
+  var machine = this;
+  if (machine.bar[index]){
+    $(machine.grid[index]).attr("id", "on");
+    var timeout = window.setTimeout(function() {
+      $(machine.grid[index]).attr("id", "");
+      window.clearTimeout(timeout);
+    }, 100);
+  }
 
+};
 
+Machine.prototype.createBar = function() {
+  var machine = this;
+  machine.bar = [];
+  for (var i = 0; i < machine.grid.length; i++) {
+    machine.bar.push(machine.grid[i].attributes['data-value'].value.to_i());
+  }
+  $(this).trigger("ready.grid");
+};
 $(document).ready(function () {
+  var gridList = document.getElementById('sequencer').children[0].children;
   var controls = document.getElementById("meter");
-  machine = new Machine(controls);
+  machine = new Machine(controls, gridList);
 ;})
