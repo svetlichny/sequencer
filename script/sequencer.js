@@ -16,7 +16,7 @@ Sequencer.prototype.listenContols = function () {
         $(this).attr('data-value', 0);
       }
       sequencer.createBar();
-    })
+    });
   });
 }
 Sequencer.prototype.createBar = function() {
@@ -33,11 +33,12 @@ Sequencer.prototype.buildGrid = function() {
   for (var i = 0; i < this.beat(); i++) {
     var newNote = $('<li data-value="0"/>').appendTo($(gridParent))[0];
     this.grid.push(newNote);
+    if (i == this.beat() - 1)
+      this.createBar();
   };
-  this.createBar();
 };
 Sequencer.prototype.originalOptionFinder = function (option) {
-  this.original[option] = this.original[option] || parseInt(this.meter.find("#note_" + option + " option:selected").text());
+  this.original[option] = this.original[option] || this.meter.find("#bar_" + option).val().to_i();
   return this.original[option];
 }
 Sequencer.prototype.value  = function() {

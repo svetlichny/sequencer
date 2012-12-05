@@ -1,9 +1,9 @@
 .wrapper {
   margin: 100px auto 20px;
-  width: 380px;
+  width: 670px;
 }
 select {width: 80px;}
-#rate {
+#bar_bpm {
   width: 50px;
 }
 #sequencer {
@@ -31,4 +31,7 @@ select {width: 80px;}
 }
 #sequencer li#on {
   background-color: #00db52;
+}
+select[disabled] {
+  opacity: 0.5;
 }

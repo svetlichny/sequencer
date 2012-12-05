@@ -12,9 +12,9 @@ Metronome.prototype = {
     this.stopBar();
   },
   mainLoop: function () {
-    var click = this;
+    var metronome = this;
     this.timeout = window.setTimeout(function() {
-      click.runMainLoop();
+      metronome.runMainLoop();
     }, this.barInterval());  
     return this;
   },
@@ -68,7 +68,7 @@ Metronome.prototype.barInterval = function (){
   }
 };
 Metronome.prototype.meter = function (option) {
-  this[option] = this[option] || parseInt(this.meterOptions.find('#note_' + option + ' option:selected').text());
+  this[option] = this[option] || parseInt(this.meterOptions.find('#bar_' + option + ' option:selected').text());
   return this[option];
 };
 Metronome.prototype.temp = function () {
@@ -83,7 +83,7 @@ Metronome.prototype.stopBar = function() {
 Metronome.prototype.listenEvents = function() {
   var metronome = this;
   metronome.meterOptions.find('select').change(function() {
-    var optionName = $(this).attr('id').split("note_")[1];
+    var optionName = $(this).attr('id').split("bar_")[1];
     var optionValue = parseInt($(this).find('option:selected').text());
     metronome[optionName] = optionValue;
   });
