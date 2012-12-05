@@ -1,10 +1,5 @@
 body {
-  text-align: center;
-}
-.wrapper {
-  margin: 100px auto 20px;
-  display: inline-block;
-  text-align: left;
+  margin: 20px;
 }
 select {width: 100%;}
 #bar_bpm {
