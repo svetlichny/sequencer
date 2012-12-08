@@ -16,6 +16,13 @@ function browserFormat () {
   if ($.browser.safari) {
     return ".mp3";
   } else {
-    return ".ogg";
+    return ".wav";
+  }
+};
+function toggleValue () {
+  if ($(this).attr('data-value') == 0) {
+    $(this).attr('data-value', 1);
+  } else {
+    $(this).attr('data-value', 0);
   }
 };

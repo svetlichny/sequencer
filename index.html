@@ -7,6 +7,7 @@
 <script type="text/javascript" src='script/jquery-1.8.3.js'></script>
 <script type="text/javascript" src='script/libs.js'></script>
 <script type="text/javascript" src='script/application.js'></script>
+<script type="text/javascript" src='script/lines.js'></script>
 <link rel="stylesheet" type="text/css" href="style/normalize.css">
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.min.css">
@@ -71,6 +72,17 @@
             <option value="32">32</option>
           </select>
         </div>
+        <div class="span3">
+          <label for="bar_note">Sound</label>
+          <select id="bar_note" class='span2'>
+            <option value="hat">High</option>
+            <option value="snare">Med</option>
+            <option value="kick">Low</option>
+          </select>
+          <a href="#" id='newLine' class='btn'>Add</a>
+        </div>
+        <div class="span2">
+        </div>
       </div>
       <div class="row">
         <div class="span2">
@@ -83,24 +95,6 @@
     </div>
   </div>
   <div id='sequencer'>
-    <ul>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-      <li data-value='0'></li>
-    </ul>
   </div>
   <p>View project on <a href="https://github.com/andrew-yavtushenko/sequencer.git">github</a></p>
 </body>

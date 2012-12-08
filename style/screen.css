@@ -1,7 +1,10 @@
 body {
   margin: 20px;
 }
-select {width: 100%;}
+select {
+  width: 100%;
+  margin-bottom: 0;
+}
 #bar_bpm {
   padding-left: 0;
   padding-right: 0;
@@ -35,7 +38,7 @@ label {
 #sequencer li[data-value='1'] {
   background-color: #666;
 }
-#sequencer li#on {
+#sequencer li.on {
   background-color: #00db52;
 }
 select[disabled] {
