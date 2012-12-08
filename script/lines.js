@@ -28,9 +28,9 @@ Line.prototype.blink = function(index) {
   if (line.bar[index]) {
     line.sound.currentTime = 0;
     line.sound.play();
-    $(line.grid[index]).addClass("on");
+    line.grid[index].className = "on";
     var timeout = window.setTimeout(function() {
-      $(line.grid[index]).removeClass("on");
+      line.grid[index].className = "";
       window.clearTimeout(timeout);
     }, 60);
   }
