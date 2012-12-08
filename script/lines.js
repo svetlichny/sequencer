@@ -26,13 +26,13 @@ Line.prototype.createBar = function() {
 Line.prototype.blink = function(index) {
   var line = this;
   if (line.bar[index]) {
-    line.note.play();
+    //line.sound.currentTime = 0;
+    line.sound.play();
     $(line.grid[index]).addClass("on");
     var timeout = window.setTimeout(function() {
       $(line.grid[index]).removeClass("on");
-      //line.note.pause();
       window.clearTimeout(timeout);
-    }, 60);
+    }, 40);
   }
 };
 function Line (wrapper, meter, sound) {
@@ -42,6 +42,6 @@ function Line (wrapper, meter, sound) {
   this.bar = [];
   this.grid = [];
   this.buildGrid (wrapper, meter);
-  this.createNote ();
+  //this.createNote ();
   return this;
 }

@@ -53,7 +53,7 @@ function Machine (meter, wrapper) {
   return this;
 };
 Machine.prototype.newLine = function() {
-  var line = new Line(this.wrapper, this.meter, $("#bar_note").val());
+  var line = new Line(this.wrapper, this.meter, $("#" + $("#bar_note").val())[0]);
   this.lines.push(line);
 };
 Machine.prototype.adjustParameters = function() {

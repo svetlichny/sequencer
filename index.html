@@ -14,7 +14,16 @@
 <link rel="stylesheet" type="text/css" href="style/screen.css">
 </head>
 <body>
+
   <div class="wrapper">
+    <div class="audio">
+      <a href="#" class="btn" id='test_timeout'>timeout</a>
+      <a href="#" class="btn" id='test_interval'>interval</a>
+      <audio id="hat" src="audio/hat.wav" type="audio/wave" autoload="auto"></audio>
+      <audio id="snare" src="audio/snare.wav" type="audio/wave" autoload="auto"></audio>
+      <audio id="kick" src="audio/kick.wav" type="audio/wave" autoload="auto"></audio>
+      
+    </div>
     <h1>
       Sequencer
       <small>in development</small>
@@ -97,5 +106,18 @@
   <div id='sequencer'>
   </div>
   <p>View project on <a href="https://github.com/andrew-yavtushenko/sequencer.git">github</a></p>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36915852-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </body>
 </html>
