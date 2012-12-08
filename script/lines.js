@@ -32,7 +32,7 @@ Line.prototype.blink = function(index) {
       $(line.grid[index]).removeClass("on");
       //line.note.pause();
       window.clearTimeout(timeout);
-    }, 100);
+    }, 60);
   }
 };
 function Line (wrapper, meter, sound) {
